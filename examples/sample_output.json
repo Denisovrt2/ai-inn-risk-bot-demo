@@ -1,0 +1,8 @@
+{
+  "risk_level": "medium",
+  "key_factors": [
+    "judicial_activity_detected",
+    "changes_in_corporate_data"
+  ],
+  "summary": "Компания требует дополнительной проверки перед сотрудничеством."
+}
