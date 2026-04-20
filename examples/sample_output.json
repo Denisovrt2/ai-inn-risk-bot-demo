@@ -1,8 +1,88 @@
 {
-  "risk_level": "medium",
-  "key_factors": [
-    "judicial_activity_detected",
-    "changes_in_corporate_data"
+  "report_meta": {
+    "report_type": "counterparty_risk_assessment",
+    "version": "demo_public_v1",
+    "analysis_scope": "primary_due_diligence",
+    "decision_context": "procurement_or_partnership"
+  },
+  "company_profile": {
+    "inn": "7707083893",
+    "company_name": "Пример компании",
+    "company_status": "действующая",
+    "assessment_positioning": "анализ контрагента для задач экономической безопасности"
+  },
+  "executive_signal": {
+    "final_risk_level": "повышенный",
+    "risk_score": 0.68,
+    "decision_signal": "сотрудничество возможно только после расширенной проверки",
+    "business_meaning": "Система обнаружила сочетание сигналов, которое не является прямым стоп-фактором, но повышает вероятность операционных, юридических и финансовых рисков при работе с контрагентом."
+  },
+  "risk_factors": [
+    {
+      "feature_code": "court_activity_risk",
+      "feature_group": "judicial",
+      "severity": "high",
+      "why_it_matters": "Судебная активность важна не по количеству дел сама по себе, а по роли компании, характеру споров, суммам требований и повторяемости паттерна.",
+      "signal_detected": "Выявлен судебный блок, требующий отдельной ручной проверки роли компании и предмета споров."
+    },
+    {
+      "feature_code": "corporate_change_instability",
+      "feature_group": "corporate_structure",
+      "severity": "medium",
+      "why_it_matters": "Частые или чувствительные корпоративные изменения могут указывать на нестабильность структуры управления или повышенный уровень неопределенности.",
+      "signal_detected": "Обнаружены корпоративные изменения, значимые для оценки устойчивости контрагента."
+    },
+    {
+      "feature_code": "registry_integrity_signal",
+      "feature_group": "registration_profile",
+      "severity": "medium",
+      "why_it_matters": "Регистрационные и реестровые сигналы важны как ранние индикаторы аномалий в профиле компании.",
+      "signal_detected": "Найдены регистрационные сигналы, которые не являются прямым основанием для отказа, но усиливают риск-профиль."
+    },
+    {
+      "feature_code": "composite_risk_pattern",
+      "feature_group": "combined_logic",
+      "severity": "high",
+      "why_it_matters": "Отдельные сигналы по одному могут быть допустимы, но их сочетание меняет управленческую оценку риска.",
+      "signal_detected": "Сочетание судебных, регистрационных и корпоративных факторов повышает общий риск выше базового уровня."
+    }
   ],
-  "summary": "Компания требует дополнительной проверки перед сотрудничеством."
+  "source_coverage": {
+    "source_types_used": [
+      "государственные реестры",
+      "данные ФНС",
+      "судебные данные",
+      "корпоративные сигналы",
+      "регистрационные факторы",
+      "операционные и поведенческие сигналы"
+    ],
+    "source_logic": "Система использует не один источник, а комбинирует несколько типов сигналов, чтобы снизить риск ложного вывода по одному признаку."
+  },
+  "feature_engine": {
+    "model_type": "rule_based_risk_engine_with_ai_interpretation",
+    "feature_approach": "Собственная feature-логика строится не на raw data, а на интерпретируемых признаках риска, пригодных для управленческого решения.",
+    "examples_of_feature_layers": [
+      "judicial_risk_features",
+      "registry_profile_features",
+      "corporate_change_features",
+      "combined_pattern_features"
+    ]
+  },
+  "ai_interpretation": {
+    "short_verdict": "Контрагент не выглядит как автоматический стоп-кейс, но требует расширенной проверки перед началом сотрудничества.",
+    "management_interpretation": "Система зафиксировала не единичный фактор, а комбинацию сигналов, которая повышает риск неопределенности. Для экономической безопасности это означает, что решение о сотрудничестве нельзя принимать только на основании формального статуса компании и базовых регистрационных данных.",
+    "recommended_next_step": "Провести ручную проверку судебного блока, значимых корпоративных изменений и факторов, влияющих на устойчивость исполнения обязательств.",
+    "ai_role_in_system": "AI не заменяет риск-логику, а интерпретирует результат feature engine и упаковывает его в понятный управленческий вывод."
+  },
+  "pipeline_design": {
+    "steps": [
+      "data_collection",
+      "data_normalization",
+      "feature_engineering",
+      "risk_scoring",
+      "ai_interpretation",
+      "decision_support_output"
+    ],
+    "architecture_note": "Проект построен как decision-support система: данные -> признаки -> скоринг -> AI-отчет, а не как простая генерация текста поверх сырых источников."
+  }
 }
